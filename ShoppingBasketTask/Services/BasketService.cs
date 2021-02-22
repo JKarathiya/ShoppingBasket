@@ -9,10 +9,10 @@ namespace ShoppingBasketTask.Services
     public class BasketService
     {
         private const bool _success = true;
-        private readonly IShoppingBasketProcessorFactory _basketProcessorFactory;
+        private readonly IShoppingBasketProcessor _basketProcessorFactory;
         private readonly Mapper _mapper;
 
-        public BasketService(IShoppingBasketProcessorFactory basketProcessorFactory)
+        public BasketService(IShoppingBasketProcessor basketProcessorFactory)
         {
             _basketProcessorFactory = basketProcessorFactory;
             _mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<BasketResponse, BasketServiceResponse>()));
@@ -43,9 +43,9 @@ namespace ShoppingBasketTask.Services
             });
         }
 
-        private IList<IShoppingBasketProcessor> CreateBasketProcessors()
+        private IList<IShoppingBasketProcess> CreateBasketProcessors()
         {
-            return new List<IShoppingBasketProcessor>
+            return new List<IShoppingBasketProcess>
             {
                 _basketProcessorFactory.CreateProductProcessor(),
                 _basketProcessorFactory.CreateOfferVoucherProcessor(),

@@ -16,7 +16,7 @@ namespace ShoppingBasketTask.Specs.Steps
         private readonly IProductRepository _productRepository;
         private readonly IGiftVoucherRepository _giftVoucherRepository;
         private readonly IOfferVoucherRepository _offerVoucherRepository;
-        private readonly IShoppingBasketProcessorFactory _basketProcessorFactory;
+        private readonly IShoppingBasketProcessor _basketProcessor;
         private readonly BasketService _basketService;
         private BasketServiceResponse _result;
 
@@ -42,8 +42,8 @@ namespace ShoppingBasketTask.Specs.Steps
             _productRepository = new ProductRepository();
             _giftVoucherRepository = new GiftVoucherRepository();
             _offerVoucherRepository = new OfferVoucherRepository();
-            _basketProcessorFactory = new ShoppingBasketProcessorFactory();
-            _basketService = new BasketService(_basketProcessorFactory);
+            _basketProcessor = new ShoppingBasketProcessor();
+            _basketService = new BasketService(_basketProcessor);
         }
 
         /// <summary>

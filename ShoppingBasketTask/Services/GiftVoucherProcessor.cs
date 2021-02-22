@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ShoppingBasketTask.Services
 {
-    public class GiftVoucherProcessor : IShoppingBasketProcessor
+    public class GiftVoucherProcessor : IShoppingBasketProcess
     {
         public IShoppingBasket Process(IShoppingBasket shoppingBasket)
         {

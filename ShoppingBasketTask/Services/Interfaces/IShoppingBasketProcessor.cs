@@ -2,6 +2,8 @@
 {
     public interface IShoppingBasketProcessor
     {
-        IShoppingBasket Process(IShoppingBasket basket);
+        IShoppingBasketProcess CreateGiftVoucherProcessor();
+        IShoppingBasketProcess CreateOfferVoucherProcessor();
+        IShoppingBasketProcess CreateProductProcessor();
     }
 }

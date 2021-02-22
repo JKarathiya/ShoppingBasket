@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ShoppingBasketTask.Services
 {
-    public class ProductProcessor : IShoppingBasketProcessor
+    public class ProductProcessor : IShoppingBasketProcess
     {
         public IShoppingBasket Process(IShoppingBasket shoppingBasket)
         {

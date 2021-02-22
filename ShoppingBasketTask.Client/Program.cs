@@ -37,8 +37,8 @@ namespace ShoppingBasketTask.Client
             Console.WriteLine("*** Scenario 1 ***");
             IShoppingBasket _shoppingBasket1 = new ShoppingBasket();
             IProductRepository _productRepository1 = new ProductRepository();
-            IShoppingBasketProcessorFactory _basketProcessorFactory1 = new ShoppingBasketProcessorFactory();
-            BasketService _basketService1 = new BasketService(_basketProcessorFactory1);
+            IShoppingBasketProcessor _basketProcessor1 = new ShoppingBasketProcessor();
+            BasketService _basketService1 = new BasketService(_basketProcessor1);
             _shoppingBasket1.AddtemToBasket(_productRepository1.GetProduct(Jumper_54_65_Id));
             _shoppingBasket1.AddtemToBasket(_productRepository1.GetProduct(HeadLight_3_50_Id));
             BasketServiceResponse _result1 = _basketService1.GetBasketTotalAmount(_shoppingBasket1);
@@ -55,8 +55,8 @@ namespace ShoppingBasketTask.Client
             IProductRepository _productRepository2 = new ProductRepository();
             IGiftVoucherRepository _giftVoucherRepository2 = new GiftVoucherRepository();
             IOfferVoucherRepository _offerVoucherRepository2 = new OfferVoucherRepository();
-            IShoppingBasketProcessorFactory _basketProcessorFactory2 = new ShoppingBasketProcessorFactory();
-            BasketService _basketService2 = new BasketService(_basketProcessorFactory2);
+            IShoppingBasketProcessor _basketProcessor2 = new ShoppingBasketProcessor();
+            BasketService _basketService2 = new BasketService(_basketProcessor2);
             _shoppingBasket2.AddtemToBasket(_productRepository2.GetProduct(Gloves_10_50_Id));
             _shoppingBasket2.AddtemToBasket(_productRepository2.GetProduct(Jumper_54_65_Id));
             _shoppingBasket2.ApplyGiftVoucher(_giftVoucherRepository2.GetGiftVoucher(ReedemGiftVoucher_5_00_Id));
@@ -74,8 +74,8 @@ namespace ShoppingBasketTask.Client
             IShoppingBasket _shoppingBasket3 = new ShoppingBasket();
             IProductRepository _productRepository3 = new ProductRepository();
             IOfferVoucherRepository _offerVoucherRepository3 = new OfferVoucherRepository();
-            IShoppingBasketProcessorFactory _basketProcessorFactory3 = new ShoppingBasketProcessorFactory();
-            BasketService _basketService3 = new BasketService(_basketProcessorFactory3);
+            IShoppingBasketProcessor _basketProcessor3 = new ShoppingBasketProcessor();
+            BasketService _basketService3 = new BasketService(_basketProcessor3);
             _shoppingBasket3.AddtemToBasket(_productRepository3.GetProduct(Gloves_25_00_Id));
             _shoppingBasket3.AddtemToBasket(_productRepository3.GetProduct(Jumper_26_00_Id));
             _shoppingBasket3.ApplyOfferVoucher(_offerVoucherRepository3.GetOfferVoucher(ReedemOfferVoucher_5_off_HeadGear_Id));
@@ -94,8 +94,8 @@ namespace ShoppingBasketTask.Client
             IShoppingBasket _shoppingBasket4 = new ShoppingBasket();
             IProductRepository _productRepository4 = new ProductRepository();
             IOfferVoucherRepository _offerVoucherRepository4 = new OfferVoucherRepository();
-            IShoppingBasketProcessorFactory _basketProcessorFactory4 = new ShoppingBasketProcessorFactory();
-            BasketService _basketService4 = new BasketService(_basketProcessorFactory4);
+            IShoppingBasketProcessor _basketProcessor4 = new ShoppingBasketProcessor();
+            BasketService _basketService4 = new BasketService(_basketProcessor4);
             _shoppingBasket4.AddtemToBasket(_productRepository4.GetProduct(Gloves_25_00_Id));
             _shoppingBasket4.AddtemToBasket(_productRepository4.GetProduct(Jumper_26_00_Id));
             _shoppingBasket4.AddtemToBasket(_productRepository4.GetProduct(HeadLight_3_50_Id));
@@ -115,8 +115,8 @@ namespace ShoppingBasketTask.Client
             IProductRepository _productRepository5 = new ProductRepository();
             IGiftVoucherRepository _giftVoucherRepository5 = new GiftVoucherRepository();
             IOfferVoucherRepository _offerVoucherRepository5 = new OfferVoucherRepository();
-            IShoppingBasketProcessorFactory _basketProcessorFactory5 = new ShoppingBasketProcessorFactory();
-            BasketService _basketService5 = new BasketService(_basketProcessorFactory5);
+            IShoppingBasketProcessor _basketProcessor5 = new ShoppingBasketProcessor();
+            BasketService _basketService5 = new BasketService(_basketProcessor5);
             _shoppingBasket5.AddtemToBasket(_productRepository5.GetProduct(Gloves_25_00_Id));
             _shoppingBasket5.AddtemToBasket(_productRepository5.GetProduct(Jumper_26_00_Id));
             _shoppingBasket5.ApplyGiftVoucher(_giftVoucherRepository5.GetGiftVoucher(ReedemGiftVoucher_5_00_Id));
@@ -136,8 +136,8 @@ namespace ShoppingBasketTask.Client
             IShoppingBasket _shoppingBasket6 = new ShoppingBasket();
             IProductRepository _productRepository6 = new ProductRepository();
             IOfferVoucherRepository _offerVoucherRepository6 = new OfferVoucherRepository();
-            IShoppingBasketProcessorFactory _basketProcessorFactory6 = new ShoppingBasketProcessorFactory();
-            BasketService _basketService6 = new BasketService(_basketProcessorFactory6);
+            IShoppingBasketProcessor _basketProcessor6 = new ShoppingBasketProcessor();
+            BasketService _basketService6 = new BasketService(_basketProcessor6);
             _shoppingBasket6.AddtemToBasket(_productRepository6.GetProduct(Gloves_25_00_Id));
             _shoppingBasket6.AddtemToBasket(_productRepository6.GetProduct(GiftVoucher_30_00_Id));
             _shoppingBasket6.ApplyOfferVoucher(_offerVoucherRepository6.GetOfferVoucher(ReedemOfferVoucher_5_off_Over50_Id));
@@ -155,8 +155,8 @@ namespace ShoppingBasketTask.Client
             IShoppingBasket _shoppingBasket7 = new ShoppingBasket();
             IProductRepository _productRepository7 = new ProductRepository();
             IGiftVoucherRepository _giftVoucherRepository7 = new GiftVoucherRepository();
-            IShoppingBasketProcessorFactory _basketProcessorFactory7 = new ShoppingBasketProcessorFactory();
-            BasketService _basketService7 = new BasketService(_basketProcessorFactory7);
+            IShoppingBasketProcessor _basketProcessor7 = new ShoppingBasketProcessor();
+            BasketService _basketService7 = new BasketService(_basketProcessor7);
             _shoppingBasket7.AddtemToBasket(_productRepository7.GetProduct(Gloves_25_00_Id));
             _shoppingBasket7.ApplyGiftVoucher(_giftVoucherRepository7.GetGiftVoucher(ReedemGiftVoucher_30_00_Id));
             BasketServiceResponse _result7 = _basketService7.GetBasketTotalAmount(_shoppingBasket7);
