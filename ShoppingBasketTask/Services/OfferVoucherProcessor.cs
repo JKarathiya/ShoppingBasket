@@ -10,30 +10,35 @@ namespace ShoppingBasketTask.Services
         public IShoppingBasket Process(IShoppingBasket shoppingBasket)
         {
             var offerVoucher = shoppingBasket.GetOfferVoucher();
-            if (offerVoucher != null && ValidateOfferVoucherForThreshold(shoppingBasket))
+
+            if (offerVoucher == null) return shoppingBasket;
+
+            if (!ValidateOfferVoucherForThreshold(shoppingBasket)) return shoppingBasket;
+
+            if (!offerVoucher.IsSpecificToProduct)
             {
-                if (offerVoucher.IsSpecificToProduct)
-                {
-                    var ItemsInDiscountCategory = shoppingBasket.GetBasketItems().Where(x => x.Product.ProductCategory == offerVoucher.ProductCategory);
-                    if (!ItemsInDiscountCategory.Any())
-                        shoppingBasket.Messages.Add("There are no products in your basket applicable to Offer Voucher YYY-YYY.");
-                    else
-                    {
-                        var totalItemAmount = ItemsInDiscountCategory.Sum(x => x.Product.Price);
-                        shoppingBasket.Total -= totalItemAmount;
-                    }
-                }
-                else
-                    shoppingBasket.Total = decimal.Round(shoppingBasket.Total - offerVoucher.DiscountOffAmount, 2, MidpointRounding.AwayFromZero);
+                shoppingBasket.Total = decimal.Round(shoppingBasket.Total - offerVoucher.DiscountOffAmount, 2, MidpointRounding.AwayFromZero);
+                return shoppingBasket;
             }
+
+            var ItemsInDiscountCategory = shoppingBasket.GetBasketItems().Where(x => x.Product.ProductCategory == offerVoucher.ProductCategory);
+            if (ItemsInDiscountCategory.Any())
+            {
+                var totalItemAmount = ItemsInDiscountCategory.Sum(x => x.Product.Price);
+                shoppingBasket.Total -= totalItemAmount;
+            }
+            else
+                shoppingBasket.Messages.Add("There are no products in your basket applicable to Offer Voucher YYY-YYY.");
+
             return shoppingBasket;
         }
 
         private bool ValidateOfferVoucherForThreshold(IShoppingBasket shoppingBasket)
         {
-
-            var basketsTotal = shoppingBasket.Total - shoppingBasket.GetBasketItems().Where(x => x.Product.ProductCategory == Category.GiftVoucher).Sum(x => x.Product.Price);
+            var totalGiftAmount = shoppingBasket.GetBasketItems().Where(x => x.Product.ProductCategory == Category.GiftVoucher).Sum(x => x.Product.Price * x.Quantity);
+            var basketsTotal = shoppingBasket.Total - totalGiftAmount;
             var discountVoucher = shoppingBasket.GetOfferVoucher();
+
             if (basketsTotal >= discountVoucher.Threshold)
                 return true;
 

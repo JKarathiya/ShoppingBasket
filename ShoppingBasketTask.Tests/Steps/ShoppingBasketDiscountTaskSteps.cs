@@ -72,7 +72,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _shoppingBasket.AddtemToBasket(_productRepository.GetProduct(Gloves_10_50_Id));
         }
         /// <summary>
-        /// 
+        /// Apply 1 x £5.00 Gift Voucher XXX-XXX
         /// </summary>
         [Given(@"Apply 1 x £5.00 Gift Voucher XXX-XXX")]
         public void GivenApplyXGiftVoucherOf5_00_XXX_XXX()
@@ -80,7 +80,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _shoppingBasket.ApplyGiftVoucher(_giftVoucherRepository.GetGiftVoucher(ReedemGiftVoucher_5_00_Id));
         }
         /// <summary>
-        /// 
+        /// Add 1 Gloves @ £25.00 to basket
         /// </summary>
         [Given(@"Add 1 Gloves @ £25.00 to basket")]
         public void GivenAddGlovesAt25_00ToBasket()
@@ -88,7 +88,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _shoppingBasket.AddtemToBasket(_productRepository.GetProduct(Gloves_25_00_Id));
         }
         /// <summary>
-        /// 
+        /// Add 1 Jumper @ £26.00 to basket
         /// </summary>
         [Given(@"Add 1 Jumper @ £26.00 to basket")]
         public void GivenAddJumperToBasket()
@@ -96,7 +96,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _shoppingBasket.AddtemToBasket(_productRepository.GetProduct(Jumper_26_00_Id));
         }
         /// <summary>
-        /// 
+        /// 1 x £5.00 off Head Gear in baskets over £50.00 Offer Voucher YYY-YYY applied
         /// </summary>
         [Given(@"1 x £5.00 off Head Gear in baskets over £50.00 Offer Voucher YYY-YYY applied")]
         public void GivenXOffHeadGearInBasketsOverOfferVoucherYYY_YYYApplied()
@@ -104,7 +104,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _shoppingBasket.ApplyOfferVoucher(_offerVoucherRepository.GetOfferVoucher(ReedemOfferVoucher_5_off_HeadGear_Id));
         }
         /// <summary>
-        /// 
+        /// Apply 1 x £30.00 Gift Voucher XXX-XXX
         /// </summary>
         [Given(@"Apply 1 x £30.00 Gift Voucher XXX-XXX")]
         public void GivenApplyXGiftVoucherOf30_00_XXX_XXX()
@@ -112,7 +112,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _shoppingBasket.ApplyGiftVoucher(_giftVoucherRepository.GetGiftVoucher(ReedemGiftVoucher_30_00_Id));
         }
         /// <summary>
-        /// 
+        /// Add 1 £30 Gift Voucher @ £30.00 to basket
         /// </summary>
         [Given(@"Add 1 £30 Gift Voucher @ £30.00 to basket")]
         public void GivenAddGiftVoucherToBasket()
@@ -120,7 +120,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _shoppingBasket.AddtemToBasket(_productRepository.GetProduct(GiftVoucher_30_00_Id));
         }
         /// <summary>
-        /// 
+        /// Apply 1 x £5.00 off baskets over £50.00 Offer Voucher YYY-YYY applied
         /// </summary>
         [Given(@"Apply 1 x £5.00 off baskets over £50.00 Offer Voucher YYY-YYY applied")]
         public void GivenApplyXOffBasketsOverOfferVoucherYYY_YYYApplied()
@@ -128,7 +128,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _shoppingBasket.ApplyOfferVoucher(_offerVoucherRepository.GetOfferVoucher(ReedemOfferVoucher_5_off_Over50_Id));
         }
         /// <summary>
-        /// 
+        /// I calls GetBasketTotalAmount
         /// </summary>
         [When(@"I calls GetBasketTotalAmount\(\)")]
         public void WhenICallsGetBasketTotalAmount()
@@ -136,7 +136,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _result = _basketService.GetBasketTotalAmount(_shoppingBasket);
         }
         /// <summary>
-        /// 
+        /// I should see overalls price is £XX.XX
         /// </summary>
         /// <param name="total"></param>
         [Then(@"I should see overalls price is £(.*)")]
@@ -145,7 +145,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _result.BasketTotalAmount.Should().Be(total);
         }
         /// <summary>
-        /// 
+        /// Message: “There are no products in your basket applicable to Offer Voucher YYY-YYY
         /// </summary>
         [Then(@"Message: “There are no products in your basket applicable to Offer Voucher YYY-YYY\.”")]
         public void ThenMessageThereAreNoProductsInYourBasketApplicableToOfferVoucherYYY_YYY_()
@@ -153,7 +153,7 @@ namespace ShoppingBasketTask.Specs.Steps
             _result.Notifications.Aggregate((i, j) => i + j).Should().Be("There are no products in your basket applicable to Offer Voucher YYY-YYY.");
         }
         /// <summary>
-        /// 
+        /// Message: “You have not reached the spend threshold for Gift Voucher YYY-YYY\. Spend another £(.*) to receive £(.*) discount from your basket total
         /// </summary>
         /// <param name="additional"></param>
         /// <param name="dicount"></param>
