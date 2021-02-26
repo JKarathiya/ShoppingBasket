@@ -15,10 +15,7 @@ namespace ShoppingBasketTask.Repositories
             LoadProducts();
         }
 
-        public Product GetProduct(int id)
-        {
-            return _products.FirstOrDefault(p => p.Id == id);
-        }
+        public Product GetProduct(int id) => _products.FirstOrDefault(p => p.Id == id);
 
         private void LoadProducts()
         {

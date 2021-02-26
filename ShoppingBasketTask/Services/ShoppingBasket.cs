@@ -17,17 +17,15 @@ namespace ShoppingBasketTask.Services
         {
             var basketItem = _basketItems.FirstOrDefault(x => x.Product.Id == product.Id);
 
-            if (basketItem == null)
-            {
+            if (basketItem != null)
+                basketItem.Quantity++;
+            else
                 _basketItems.Add(new BasketItem
                 {
                     ItemId = GetItemId(),
                     Product = product,
                     Quantity = 1
                 });
-            }
-            else
-                basketItem.Quantity++;
         }
 
         public IEnumerable<BasketItem> GetBasketItems() => _basketItems;

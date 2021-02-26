@@ -14,23 +14,12 @@ namespace ShoppingBasketTask.Services
 
             var totalAmountOfgiftVouchers = giftVouchers.Sum(x => x.AmountOfDiscount);
 
-            foreach (var basketItem in shoppingBasket.GetBasketItems())
-            {
-                if (basketItem.Product.ProductCategory != Category.GiftVoucher && totalAmountOfgiftVouchers > 0)
-                {
-                    var productPrice = basketItem.Product.Price * basketItem.Quantity;
-                    if (productPrice > totalAmountOfgiftVouchers)
-                    {
-                        shoppingBasket.Total = shoppingBasket.Total - totalAmountOfgiftVouchers;
-                        totalAmountOfgiftVouchers = 0;
-                    }
-                    else
-                    {
-                        totalAmountOfgiftVouchers = totalAmountOfgiftVouchers - productPrice;
-                        shoppingBasket.Total -= productPrice;
-                    }
-                }
-            }
+            var totalAmount = shoppingBasket.GetBasketItems().Where(x => x.Product.ProductCategory != Category.GiftVoucher).Sum(x => x.Product.Price * x.Quantity);
+            var totalGiftAmount = shoppingBasket.Total - totalAmount;
+
+            var remainingAmount = totalAmount >= totalAmountOfgiftVouchers ? totalAmount - totalAmountOfgiftVouchers : 0;
+            shoppingBasket.Total = totalGiftAmount + remainingAmount;
+
             return shoppingBasket;
         }
     }

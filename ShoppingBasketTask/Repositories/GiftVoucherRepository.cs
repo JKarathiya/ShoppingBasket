@@ -14,10 +14,7 @@ namespace ShoppingBasketTask.Repositories
             LoadGiftVouchers();
         }
 
-        public GiftVoucher GetGiftVoucher(int id)
-        {
-            return _giftVoucherRepositories.FirstOrDefault(x => x.Id == id);
-        }
+        public GiftVoucher GetGiftVoucher(int id) => _giftVoucherRepositories.FirstOrDefault(x => x.Id == id);
 
         private void LoadGiftVouchers()
         {

@@ -15,10 +15,7 @@ namespace ShoppingBasketTask.Repositories
             LoadofferVouchers();
         }
 
-        public OfferVoucher GetOfferVoucher(int id)
-        {
-            return _offerVouchers.FirstOrDefault(x => x.Id == id);
-        }
+        public OfferVoucher GetOfferVoucher(int id) => _offerVouchers.FirstOrDefault(x => x.Id == id);
 
         private void LoadofferVouchers()
         {

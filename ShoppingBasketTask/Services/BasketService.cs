@@ -21,25 +21,22 @@ namespace ShoppingBasketTask.Services
         public BasketServiceResponse GetBasketTotalAmount(IShoppingBasket shoppingBasket)
         {
 
-            if (shoppingBasket.GetBasketItems().Any())
-            {
-                foreach (var processor in CreateBasketProcessors())
+            if (!shoppingBasket.GetBasketItems().Any())
+                return _mapper.Map<BasketServiceResponse>(new BasketResponse()
                 {
-                    processor.Process(shoppingBasket);
-                }
-                return _mapper.Map<BasketServiceResponse>(new BasketResponse
-                {
-                    Notifications = shoppingBasket.Messages?.ToList(),
-                    BasketTotalAmount = shoppingBasket.Total,
-                    Success = _success
+                    Notifications = new List<string> { "Your Shopping Basket is empty" },
+                    Success = _success,
+                    BasketTotalAmount = 0.0m
                 });
-            }
 
-            return _mapper.Map<BasketServiceResponse>(new BasketResponse()
+            foreach (var processor in CreateBasketProcessors())
+                processor.Process(shoppingBasket);
+
+            return _mapper.Map<BasketServiceResponse>(new BasketResponse
             {
-                Notifications = new List<string> { "Your Shopping Basket is empty" },
-                Success = _success,
-                BasketTotalAmount = 0.0m
+                Notifications = shoppingBasket.Messages?.ToList(),
+                BasketTotalAmount = shoppingBasket.Total,
+                Success = _success
             });
         }
 
