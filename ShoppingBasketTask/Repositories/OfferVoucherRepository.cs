@@ -10,10 +10,7 @@ namespace ShoppingBasketTask.Repositories
     {
         private IEnumerable<OfferVoucher> _offerVouchers;
 
-        public OfferVoucherRepository()
-        {
-            LoadofferVouchers();
-        }
+        public OfferVoucherRepository() => LoadofferVouchers();
 
         public OfferVoucher GetOfferVoucher(int id) => _offerVouchers.FirstOrDefault(x => x.Id == id);
 

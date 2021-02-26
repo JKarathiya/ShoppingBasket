@@ -10,7 +10,7 @@ namespace ShoppingBasketTask.Services
         {
             var giftVouchers = shoppingBasket.GetGiftVoucher();
 
-            if (!giftVouchers.Any())  return shoppingBasket;
+            if (!giftVouchers.Any()) return shoppingBasket;
 
             var totalAmountOfgiftVouchers = giftVouchers.Sum(x => x.AmountOfDiscount);
 

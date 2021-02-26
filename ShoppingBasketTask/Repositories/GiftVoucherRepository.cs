@@ -9,10 +9,7 @@ namespace ShoppingBasketTask.Repositories
     {
         private IEnumerable<GiftVoucher> _giftVoucherRepositories;
 
-        public GiftVoucherRepository()
-        {
-            LoadGiftVouchers();
-        }
+        public GiftVoucherRepository() => LoadGiftVouchers();
 
         public GiftVoucher GetGiftVoucher(int id) => _giftVoucherRepositories.FirstOrDefault(x => x.Id == id);
 

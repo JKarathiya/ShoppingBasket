@@ -10,10 +10,7 @@ namespace ShoppingBasketTask.Repositories
     {
         private IEnumerable<Product> _products;
 
-        public ProductRepository()
-        {
-            LoadProducts();
-        }
+        public ProductRepository() => LoadProducts();
 
         public Product GetProduct(int id) => _products.FirstOrDefault(p => p.Id == id);
 

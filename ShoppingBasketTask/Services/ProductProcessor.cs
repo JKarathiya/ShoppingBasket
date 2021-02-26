@@ -8,7 +8,8 @@ namespace ShoppingBasketTask.Services
         public IShoppingBasket Process(IShoppingBasket shoppingBasket)
         {
             shoppingBasket.Total =
-                shoppingBasket.GetBasketItems().Sum(basketItem => basketItem.Product.Price * basketItem.Quantity);
+                shoppingBasket.GetBasketItems()
+                .Sum(basketItem => basketItem.Product.Price * basketItem.Quantity);
 
             return shoppingBasket;
         }

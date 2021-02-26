@@ -33,7 +33,8 @@ namespace ShoppingBasketTask.Services
 
         private bool ValidateOfferVoucherForThreshold(IShoppingBasket shoppingBasket)
         {
-            var totalGiftAmount = shoppingBasket.GetBasketItems().Where(x => x.Product.ProductCategory == Category.GiftVoucher).Sum(x => x.Product.Price * x.Quantity);
+            var totalGiftAmount = shoppingBasket.GetBasketItems().Where(x => x.Product.ProductCategory
+                                                                             == Category.GiftVoucher).Sum(x => x.Product.Price * x.Quantity);
             var basketsTotal = shoppingBasket.Total - totalGiftAmount;
             var discountVoucher = shoppingBasket.GetOfferVoucher();
 

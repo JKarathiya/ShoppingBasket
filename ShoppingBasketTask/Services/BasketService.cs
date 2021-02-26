@@ -21,33 +21,32 @@ namespace ShoppingBasketTask.Services
         public BasketServiceResponse GetBasketTotalAmount(IShoppingBasket shoppingBasket)
         {
 
-            if (!shoppingBasket.GetBasketItems().Any())
-                return _mapper.Map<BasketServiceResponse>(new BasketResponse()
-                {
-                    Notifications = new List<string> { "Your Shopping Basket is empty" },
-                    Success = _success,
-                    BasketTotalAmount = 0.0m
-                });
-
-            foreach (var processor in CreateBasketProcessors())
-                processor.Process(shoppingBasket);
-
-            return _mapper.Map<BasketServiceResponse>(new BasketResponse
+            if (shoppingBasket.GetBasketItems().Any())
             {
-                Notifications = shoppingBasket.Messages?.ToList(),
-                BasketTotalAmount = shoppingBasket.Total,
-                Success = _success
+                foreach (var processor in CreateBasketProcessors())
+                    processor.Process(shoppingBasket);
+
+                return _mapper.Map<BasketServiceResponse>(new BasketResponse
+                {
+                    Notifications = shoppingBasket.Messages?.ToList(),
+                    BasketTotalAmount = shoppingBasket.Total,
+                    Success = _success
+                });
+            }
+
+            return _mapper.Map<BasketServiceResponse>(new BasketResponse()
+            {
+                Notifications = new List<string> { "Your Shopping Basket is empty" },
+                Success = _success,
+                BasketTotalAmount = 0.0m
             });
         }
 
-        private IList<IShoppingBasketProcess> CreateBasketProcessors()
-        {
-            return new List<IShoppingBasketProcess>
+        private IList<IShoppingBasketProcess> CreateBasketProcessors() => new List<IShoppingBasketProcess>
             {
                 _basketProcessorFactory.CreateProductProcessor(),
                 _basketProcessorFactory.CreateOfferVoucherProcessor(),
                 _basketProcessorFactory.CreateGiftVoucherProcessor(),
             };
-        }
     }
 }
